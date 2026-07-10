@@ -1,0 +1,12 @@
+{
+  "name": "zanka-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun run index.js",
+    "dev": "bun --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0"
+  }
+}

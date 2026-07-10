@@ -1,0 +1,8 @@
+{
+  "name": "zanka",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}
