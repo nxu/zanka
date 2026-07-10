@@ -1,7 +1,7 @@
-node_modules
-dist
-data
-*.db
-*.db-journal
+**/node_modules
+**/dist
+**/data
+**/*.db
+**/*.db-journal
 .git
-.env
+**/.env
