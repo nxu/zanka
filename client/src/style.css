@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    background-color: theme('colors.sand.50');
+    color: theme('colors.sand.900');
+    background-image: radial-gradient(rgba(32, 28, 22, 0.05) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: theme('colors.sand.950');
+      color: theme('colors.sand.50');
+      background-image: radial-gradient(rgba(245, 239, 225, 0.05) 1px, transparent 1px);
+    }
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #ff5a3c;
+  outline-offset: 2px;
+}
