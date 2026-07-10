@@ -11,7 +11,8 @@ import IconPencil from '../components/icons/IconPencil.vue'
 import IconTrash from '../components/icons/IconTrash.vue'
 import IconCheck from '../components/icons/IconCheck.vue'
 
-const { entries, loading, fetchEntries, createEntry, updateEntry, deleteEntry } = useScores()
+const { entries, total, loading, loadingMore, fetchEntries, fetchMoreEntries, createEntry, updateEntry, deleteEntry } =
+  useScores()
 const { people, fetchPeople } = usePeople()
 const { teams, fetchTeams } = useTeams()
 const { teams: standingTeams, fetchStandings } = useStandings()
@@ -174,6 +175,16 @@ async function remove(entry) {
         </div>
       </li>
     </ul>
+
+    <button
+      v-if="entries.length < total"
+      type="button"
+      @click="fetchMoreEntries"
+      :disabled="loadingMore"
+      class="mt-4 w-full rounded-full border-2 border-sand-900/20 py-2.5 text-sm font-bold uppercase tracking-wide text-sand-700 disabled:opacity-60 dark:border-sand-50/20 dark:text-sand-300"
+    >
+      {{ loadingMore ? 'Betöltés…' : `Több betöltése (${entries.length} / ${total})` }}
+    </button>
 
     <Modal
       v-if="showModal"
