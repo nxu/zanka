@@ -20,11 +20,21 @@ export default {
         paper: { DEFAULT: '#FFFCF5', dark: '#241F16' },
         accent: { DEFAULT: '#FF5A3C', dark: '#FF6B4A' },
         danger: { DEFAULT: '#C23B22', dark: '#E4665A' },
+
+        dusk: '#2B1B4E',
+        magenta: '#C6247B',
+        sunset: '#FF7A3D',
+        sun: '#FFD23F',
+        island: '#FFFDF7',
+        silver: '#E3E6EA',
+        bronze: '#E0954A',
       },
       fontFamily: {
         display: ['Anton', 'sans-serif'],
         sans: ['Karla', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+        carnival: ['"Titan One"', 'sans-serif'],
+        festive: ['Nunito', 'sans-serif'],
       },
       boxShadow: {
         stamp: '3px 3px 0 0 #201C16',
