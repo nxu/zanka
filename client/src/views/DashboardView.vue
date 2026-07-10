@@ -33,6 +33,23 @@ function medalClass(i) {
   return ['bg-sun', 'bg-silver', 'bg-bronze'][i]
 }
 
+const FACE_OFF_SCORE_SIZES = ['text-5xl sm:text-8xl', 'text-4xl sm:text-7xl', 'text-3xl sm:text-6xl', 'text-2xl sm:text-5xl']
+const LIST_SCORE_SIZES = ['text-3xl sm:text-5xl', 'text-2xl sm:text-4xl', 'text-xl sm:text-3xl']
+
+function sizeForLength(sizes, length) {
+  if (length <= 3) return sizes[0]
+  const tier = Math.min(length - 3, sizes.length - 1)
+  return sizes[tier]
+}
+
+function faceOffScoreClass(value) {
+  return sizeForLength(FACE_OFF_SCORE_SIZES, formatScore(value).length)
+}
+
+function listScoreClass(value) {
+  return sizeForLength(LIST_SCORE_SIZES, formatScore(value).length)
+}
+
 onMounted(() => {
   fetchDashboard()
   setInterval(() => window.location.reload(), 5 * 60 * 1000)
@@ -96,7 +113,7 @@ onMounted(() => {
                 :style="{ backgroundColor: team.color }"
               ></span>
               <p class="truncate font-carnival text-base text-dusk sm:text-2xl">{{ team.name }}</p>
-              <p class="mt-1 font-carnival text-5xl leading-none text-dusk sm:text-8xl">
+              <p class="mt-1 whitespace-nowrap font-carnival leading-none text-dusk" :class="faceOffScoreClass(team.total)">
                 {{ formatScore(team.total) }}
               </p>
             </div>
@@ -115,7 +132,9 @@ onMounted(() => {
             >
               <span class="h-4 w-4 shrink-0 rounded-full sm:h-5 sm:w-5" :style="{ backgroundColor: team.color }"></span>
               <p class="flex-1 truncate font-carnival text-lg text-dusk sm:text-2xl">{{ team.name }}</p>
-              <p class="font-carnival text-3xl text-dusk sm:text-5xl">{{ formatScore(team.total) }}</p>
+              <p class="whitespace-nowrap font-carnival text-dusk" :class="listScoreClass(team.total)">
+                {{ formatScore(team.total) }}
+              </p>
             </div>
           </div>
         </section>
@@ -142,7 +161,9 @@ onMounted(() => {
                 :style="{ backgroundColor: person.team_color }"
               ></span>
               <p class="flex-1 truncate text-lg font-extrabold text-dusk sm:text-xl">{{ person.name }}</p>
-              <p class="font-carnival text-2xl text-dusk sm:text-3xl">{{ formatScore(person.total) }}</p>
+              <p class="whitespace-nowrap font-carnival text-dusk" :class="listScoreClass(person.total)">
+                {{ formatScore(person.total) }}
+              </p>
             </div>
           </div>
         </section>
