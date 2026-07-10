@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { computeStandings } from '../lib/standings.js'
-import { getLatestEntry } from '../lib/scoreEntries.js'
+import { getLatestEntries } from '../lib/scoreEntries.js'
 
 const router = Router()
 
@@ -27,7 +27,7 @@ router.get('/dashboard', (req, res) => {
   res.json({
     teams: sortedTeams,
     topPeople,
-    latestEntry: getLatestEntry(),
+    latestEntries: getLatestEntries(3),
   })
 })
 

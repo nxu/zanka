@@ -4,7 +4,7 @@ import { useDashboard } from '../composables/useDashboard.js'
 import { formatScore, formatDate } from '../format.js'
 import IconCrown from '../components/icons/IconCrown.vue'
 
-const { teams, topPeople, latestEntry, loading, error, fetchDashboard } = useDashboard()
+const { teams, topPeople, latestEntries, loading, error, fetchDashboard } = useDashboard()
 
 const CONFETTI = [
   { top: '6%', left: '10%', size: 10, color: '#FFD23F', opacity: 0.55 },
@@ -19,7 +19,7 @@ const CONFETTI = [
 
 const isFaceOff = computed(() => teams.value.length === 2)
 const isEmpty = computed(
-  () => !loading.value && !teams.value.length && !topPeople.value.length && !latestEntry.value
+  () => !loading.value && !teams.value.length && !topPeople.value.length && !latestEntries.value.length
 )
 
 const leadingTeamId = computed(() => {
@@ -168,22 +168,28 @@ onMounted(() => {
           </div>
         </section>
 
-        <section v-if="latestEntry" class="reveal" style="animation-delay: 0.5s">
+        <section v-if="latestEntries.length" class="reveal" style="animation-delay: 0.5s">
           <h2 class="mb-4 text-center font-carnival text-2xl text-white drop-shadow sm:text-3xl">
-            Legutóbbi pontszám
+            Legutóbbi pontszámok
           </h2>
-          <div class="rounded-3xl bg-island p-5 shadow-2xl sm:p-7">
-            <p class="font-carnival text-xl text-dusk sm:text-2xl">{{ latestEntry.title }}</p>
-            <p class="mb-4 text-sm font-bold text-dusk/50">{{ formatDate(latestEntry.created_at) }}</p>
-            <div class="flex flex-wrap gap-2">
-              <span
-                v-for="p in latestEntry.points"
-                :key="p.person_id"
-                class="inline-flex items-center gap-1.5 rounded-full bg-dusk/5 px-3 py-1.5 text-sm font-extrabold text-dusk"
-              >
-                <span v-if="p.team_color" class="h-2 w-2 rounded-full" :style="{ backgroundColor: p.team_color }"></span>
-                {{ p.person_name }}: {{ formatScore(p.points) }}
-              </span>
+          <div class="space-y-3">
+            <div
+              v-for="entry in latestEntries"
+              :key="entry.id"
+              class="rounded-3xl bg-island p-5 shadow-2xl sm:p-7"
+            >
+              <p class="font-carnival text-xl text-dusk sm:text-2xl">{{ entry.title }}</p>
+              <p class="mb-4 text-sm font-bold text-dusk/50">{{ formatDate(entry.created_at) }}</p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="p in entry.points"
+                  :key="p.person_id"
+                  class="inline-flex items-center gap-1.5 rounded-full bg-dusk/5 px-3 py-1.5 text-sm font-extrabold text-dusk"
+                >
+                  <span v-if="p.team_color" class="h-2 w-2 rounded-full" :style="{ backgroundColor: p.team_color }"></span>
+                  {{ p.person_name }}: {{ formatScore(p.points) }}
+                </span>
+              </div>
             </div>
           </div>
         </section>

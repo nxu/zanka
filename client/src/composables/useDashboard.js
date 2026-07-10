@@ -3,7 +3,7 @@ import { api } from '../api.js'
 
 const teams = ref([])
 const topPeople = ref([])
-const latestEntry = ref(null)
+const latestEntries = ref([])
 const loading = ref(true)
 const error = ref('')
 
@@ -14,7 +14,7 @@ async function fetchDashboard() {
     const data = await api.get('/api/public/dashboard')
     teams.value = data.teams
     topPeople.value = data.topPeople
-    latestEntry.value = data.latestEntry
+    latestEntries.value = data.latestEntries
   } catch (err) {
     error.value = err.message
   } finally {
@@ -23,5 +23,5 @@ async function fetchDashboard() {
 }
 
 export function useDashboard() {
-  return { teams, topPeople, latestEntry, loading, error, fetchDashboard }
+  return { teams, topPeople, latestEntries, loading, error, fetchDashboard }
 }
