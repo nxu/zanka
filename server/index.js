@@ -18,6 +18,13 @@ import publicRouter from './routes/public.js'
 const app = express()
 const port = process.env.PORT || 3000
 
+// Behind a TLS-terminating reverse proxy, Express sees a plain HTTP connection.
+// Trusting the proxy makes it read X-Forwarded-Proto so req.secure (and thus
+// the session cookie's `secure` flag) reflects the real, external protocol.
+if (process.env.COOKIE_SECURE === 'true') {
+  app.set('trust proxy', 1)
+}
+
 app.use(express.json())
 app.use(
   session({
