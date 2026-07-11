@@ -43,3 +43,13 @@ db.exec(`
     UNIQUE (score_entry_id, person_id)
   )
 `)
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS task_cards (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    task TEXT NOT NULL,
+    points INTEGER NOT NULL,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+  )
+`)

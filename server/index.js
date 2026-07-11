@@ -14,6 +14,7 @@ import peopleRouter from './routes/people.js'
 import scoresRouter from './routes/scores.js'
 import standingsRouter from './routes/standings.js'
 import publicRouter from './routes/public.js'
+import taskCardsRouter from './routes/taskCards.js'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -46,6 +47,7 @@ app.use('/api/admin/people', peopleRouter)
 app.use('/api/admin/scores', scoresRouter)
 app.use('/api/admin/standings', standingsRouter)
 app.use('/api/public', publicRouter)
+app.use('/api/admin/task-cards', taskCardsRouter)
 
 app.use(express.static(path.join(import.meta.dir, 'public')))
 
