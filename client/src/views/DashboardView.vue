@@ -3,6 +3,7 @@ import { computed, onMounted } from 'vue'
 import { useDashboard } from '../composables/useDashboard.js'
 import { formatScore, formatDate } from '../format.js'
 import IconCrown from '../components/icons/IconCrown.vue'
+import IconDuckLaser from '../components/icons/IconDuckLaser.vue'
 
 const { teams, topPeople, latestEntries, loading, error, fetchDashboard } = useDashboard()
 
@@ -83,6 +84,7 @@ onMounted(() => {
 
     <div class="relative z-10 mx-auto max-w-3xl px-4 py-10 sm:px-8 sm:py-14 xl:max-w-6xl">
       <header class="reveal mb-10 text-center" style="animation-delay: 0s">
+        <IconDuckLaser class="mx-auto mb-2 h-20 w-20 -rotate-3 drop-shadow-lg sm:h-28 sm:w-28" />
         <p class="font-carnival text-sm uppercase tracking-[0.25em] text-sun drop-shadow-sm sm:text-base">
           Zánka 2026
         </p>
