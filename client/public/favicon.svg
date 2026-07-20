@@ -1,29 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2B1B4E" />
-      <stop offset="55%" stop-color="#C6247B" />
-      <stop offset="100%" stop-color="#FF7A3D" />
+    <linearGradient id="duck-body" x1="10" y1="0" x2="115" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFDE59" />
+      <stop offset="100%" stop-color="#FFB800" />
     </linearGradient>
-    <radialGradient id="sun" cx="45%" cy="42%" r="60%">
-      <stop offset="0%" stop-color="#FFF3C4" />
-      <stop offset="55%" stop-color="#FFD23F" />
-      <stop offset="100%" stop-color="#FFB627" />
-    </radialGradient>
+    <filter id="duck-outline" x="-30%" y="-30%" width="160%" height="160%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="dilated" />
+      <feFlood flood-color="#2B1B4E" result="outline-color" />
+      <feComposite in="outline-color" in2="dilated" operator="in" result="outline" />
+      <feMerge>
+        <feMergeNode in="outline" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
   </defs>
 
-  <rect x="1" y="1" width="62" height="62" rx="16" fill="url(#bg)" />
+  <g transform="translate(5.84,3.68) scale(0.48)">
+    <g filter="url(#duck-outline)">
+      <ellipse cx="103" cy="70" rx="14" ry="17" fill="url(#duck-body)" />
+      <ellipse cx="64" cy="82" rx="48" ry="35" fill="url(#duck-body)" />
+      <circle cx="56" cy="32" r="31" fill="url(#duck-body)" />
 
-  <g fill="#FFD23F">
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" />
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" transform="rotate(45 32 32)" />
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" transform="rotate(90 32 32)" />
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" transform="rotate(135 32 32)" />
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" transform="rotate(180 32 32)" />
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" transform="rotate(225 32 32)" />
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" transform="rotate(270 32 32)" />
-    <rect x="28.5" y="5" width="7" height="12" rx="3.5" transform="rotate(315 32 32)" />
+      <path
+        d="M 32 28 C 6 27, -8 39, -2 50 C 2 59, 16 65, 34 63 C 42 61, 44 50, 42 39 C 40 33, 37 29, 32 28 Z"
+        fill="#FF8C1A"
+      />
+      <path d="M -2 50 C 3 60, 18 66, 34 63 C 30 58, 20 56, 8 54 C 3 53, -1 52, -2 50 Z" fill="#E8600A" />
+
+      <circle cx="40" cy="21" r="6.8" fill="#fff" stroke="#2B1B4E" stroke-width="1.5" />
+      <circle cx="62" cy="26" r="8.3" fill="#fff" stroke="#2B1B4E" stroke-width="1.5" />
+      <circle cx="40" cy="21" r="4" fill="#FF1E3C" />
+      <circle cx="62" cy="26" r="4.8" fill="#FF1E3C" />
+    </g>
   </g>
-
-  <circle cx="32" cy="32" r="15" fill="url(#sun)" />
 </svg>

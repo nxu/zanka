@@ -8,9 +8,8 @@ router.get('/dashboard', (req, res) => {
   const { teams, people } = computeStandings()
   const teamById = new Map(teams.map((t) => [t.id, t]))
 
-  const topPeople = [...people]
+  const rankedPeople = [...people]
     .sort((a, b) => b.total - a.total)
-    .slice(0, 3)
     .map((p) => {
       const team = p.team_id !== null ? teamById.get(p.team_id) : null
       return {
@@ -26,7 +25,8 @@ router.get('/dashboard', (req, res) => {
 
   res.json({
     teams: sortedTeams,
-    topPeople,
+    topPeople: rankedPeople.slice(0, 3),
+    allPeople: rankedPeople,
     latestEntries: getLatestEntries(3),
   })
 })
