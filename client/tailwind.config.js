@@ -28,6 +28,7 @@ export default {
         island: '#FFFDF7',
         silver: '#E3E6EA',
         bronze: '#E0954A',
+        toon: '#6C9BFF',
       },
       fontFamily: {
         display: ['Anton', 'sans-serif'],
@@ -41,6 +42,7 @@ export default {
         'stamp-dark': '3px 3px 0 0 #F5EFE1',
         'stamp-sm': '2px 2px 0 0 #201C16',
         'stamp-sm-dark': '2px 2px 0 0 #F5EFE1',
+        toon: '5px 5px 0 0 #2B1B4E',
       },
       borderRadius: {
         card: '1.25rem',
