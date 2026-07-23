@@ -5,10 +5,12 @@ import TeamsView from '../views/TeamsView.vue'
 import PeopleView from '../views/PeopleView.vue'
 import ScoresView from '../views/ScoresView.vue'
 import TaskCardsView from '../views/TaskCardsView.vue'
+import SidequestsView from '../views/SidequestsView.vue'
 import IconPennant from './icons/IconPennant.vue'
 import IconPerson from './icons/IconPerson.vue'
 import IconTrophy from './icons/IconTrophy.vue'
 import IconCard from './icons/IconCard.vue'
+import IconCompass from './icons/IconCompass.vue'
 
 const tab = ref('scores')
 const { logout } = useAuth()
@@ -32,7 +34,8 @@ const { logout } = useAuth()
       <ScoresView v-if="tab === 'scores'" />
       <TeamsView v-else-if="tab === 'teams'" />
       <PeopleView v-else-if="tab === 'people'" />
-      <TaskCardsView v-else />
+      <TaskCardsView v-else-if="tab === 'cards'" />
+      <SidequestsView v-else />
     </main>
 
     <nav
@@ -74,6 +77,15 @@ const { logout } = useAuth()
         >
           <IconCard class="h-6 w-6" />
           <span class="text-xs font-bold uppercase tracking-wide">Kártyák</span>
+        </button>
+        <button
+          type="button"
+          @click="tab = 'sidequests'"
+          class="flex flex-1 flex-col items-center gap-1 rounded-2xl py-2 transition-colors"
+          :class="tab === 'sidequests' ? 'bg-accent/15 text-accent dark:bg-accent-dark/20 dark:text-accent-dark' : 'text-sand-600 dark:text-sand-400'"
+        >
+          <IconCompass class="h-6 w-6" />
+          <span class="text-xs font-bold uppercase tracking-wide">Sidequestek</span>
         </button>
       </div>
     </nav>

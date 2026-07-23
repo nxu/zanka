@@ -58,14 +58,16 @@ const STYLES = `
     width: 100%;
     height: 87mm;
     padding: 4mm;
-    margin-bottom: 2mm;
     border: 1pt dashed #999;
     box-sizing: border-box;
     break-inside: avoid;
     page-break-inside: avoid;
   }
-  .slot:last-child {
-    margin-bottom: 0;
+  /* Overlap by exactly the border width so two adjacent slots' cut lines sit
+     on top of each other as one line, instead of two separate lines with a
+     gap between them - one cut separates both cards instead of two. */
+  .slot + .slot {
+    margin-top: -1pt;
   }
   .card {
     width: 100%;
