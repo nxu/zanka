@@ -14,6 +14,11 @@ import IconCompass from './icons/IconCompass.vue'
 
 const tab = ref('scores')
 const { logout } = useAuth()
+
+// Hidden admin-only escape hatch: the task-card print tool is rarely needed
+// day-to-day, so it's only reachable via ?kartyak or #kartyak in the URL
+// instead of cluttering the main nav.
+const showCardsTab = ref(window.location.search.includes('kartyak') || window.location.hash.includes('kartyak'))
 </script>
 
 <template>
@@ -70,6 +75,7 @@ const { logout } = useAuth()
           <span class="text-xs font-bold uppercase tracking-wide">Játékosok</span>
         </button>
         <button
+          v-if="showCardsTab"
           type="button"
           @click="tab = 'cards'"
           class="flex flex-1 flex-col items-center gap-1 rounded-2xl py-2 transition-colors"
