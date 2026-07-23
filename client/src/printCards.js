@@ -42,10 +42,11 @@ const STYLES = `
     size: A4 portrait;
     margin: 15mm;
   }
+  /* Block layout, not flex: Chromium's print/PDF pagination has long-standing
+     bugs honoring break-inside/page-break-inside on children of a flex
+     container, which let a card get sliced across two pages. Plain block
+     children with margin-based spacing paginate reliably instead. */
   .page {
-    display: flex;
-    flex-direction: column;
-    gap: 3mm;
     break-after: page;
     page-break-after: always;
   }
@@ -57,10 +58,14 @@ const STYLES = `
     width: 100%;
     height: 87mm;
     padding: 4mm;
+    margin-bottom: 2mm;
     border: 1pt dashed #999;
     box-sizing: border-box;
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+  .slot:last-child {
+    margin-bottom: 0;
   }
   .card {
     width: 100%;
